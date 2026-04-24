@@ -54,5 +54,18 @@ function bresenhamLine(x0, y0, x1, y1, color = "#000000")
  */
 function getPolygonVertices(centerX, centerY, sides, radius) {
     // Desarrollo del estudiante (Uso de Math.sin/Math.cos y retorno de datos)
+    let vertices = [];
+    let angle = (2 * Math.PI) / sides;
+    for (let i = 0; i < sides; i++) 
+        {
+        let x = centerX + radius * Math.cos(i * angle);
+        let y = centerY + radius * Math.sin(i * angle);
+        vertices.push({ x, y });
+    }
+    return vertices;
 }
 
+function drawCircle(cx, cy, r,  color = "#000000") 
+{
+    
+}
