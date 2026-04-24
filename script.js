@@ -62,7 +62,7 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
         {
         let x = centerX + radius * Math.cos(i * angle);
         let y = centerY + radius * Math.sin(i * angle);
-        vertices.push({ x, y });
+        vertices.push({ x:Math.round(x), y:Math.round(y) }); //Redondeamos x y y.
     }
     return vertices;
 }
@@ -115,3 +115,6 @@ function drawScene()
     }
  
 }
+window.onload = function () {
+    drawScene();
+};
