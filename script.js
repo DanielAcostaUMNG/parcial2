@@ -92,5 +92,9 @@ function drawCircle(cx, cy, r,  color = "#000000")
             x -= 1;
             err -= 2 * x + 1;
         }
+    }
+}
+function drawScene() 
+{
 
 }
