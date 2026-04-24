@@ -113,6 +113,19 @@ function drawScene()
     for (let v of vertices) {
         drawCircle(v.x, v.y, R / 4);
     }
+    const info = document.getElementById("info");
+
+    let texto = `
+        Número de lados: ${sides}
+        Radio: ${R}
+        Vértices:
+        `;
+
+        vertices.forEach((v, i) => {
+            texto += `\nV${i + 1}: (${v.x}, ${v.y})`;
+        });
+
+        info.innerText = texto;
  
 }
 window.onload = function () {
