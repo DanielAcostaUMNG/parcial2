@@ -7,6 +7,8 @@ document.getElementById("titulo").innerText = "Texto cambiado con JS";
  */
 
 // Función de apoyo para dibujar un píxel individual
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 function drawPixel(ctx, x, y, color = "#000000") {
     ctx.fillStyle = color;
     ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
@@ -67,5 +69,28 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
 
 function drawCircle(cx, cy, r,  color = "#000000") 
 {
-    
+    let x = r;  
+    let y = 0;
+    let err = 0;
+    //para cada punto (x, y) calculamos los 8 puntos simétricos en el círculo y los dibujamos, luego actualizamos el error para decidir si avanzamos en y o retrocedemos en x
+    // El algoritmo de Bresenham para círculos se basa en la simetría del círculo, lo que permite dibujar solo un octante y reflejar los puntos para completar el círculo.
+
+    while (x >= y) {
+        drawPixel(ctx, cx + x, cy + y, color);
+        drawPixel(ctx, cx + y, cy + x, color);
+        drawPixel(ctx, cx - y, cy + x, color);
+        drawPixel(ctx, cx - x, cy + y, color);
+        drawPixel(ctx, cx - x, cy - y, color);
+        drawPixel(ctx, cx - y, cy - x, color);
+        drawPixel(ctx, cx + y, cy - x, color);
+        drawPixel(ctx, cx + x, cy - y, color);
+
+        if (err <= 0) {
+            y += 1;
+            err += 2 * y + 1;
+        } else {
+            x -= 1;
+            err -= 2 * x + 1;
+        }
+
 }
