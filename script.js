@@ -96,5 +96,22 @@ function drawCircle(cx, cy, r,  color = "#000000")
 }
 function drawScene() 
 {
+   const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const R = 150;
+    const sides = Math.floor(Math.random() * 6) + 5;
+    const vertices = getPolygonVertices(centerX, centerY, sides, R);
 
+    // Dibujar polígono
+    for (let i = 0; i < sides; i++) {
+        let v1 = vertices[i];
+        let v2 = vertices[(i + 1) % sides];
+        bresenhamLine(v1.x, v1.y, v2.x, v2.y);
+    }
+
+    // Dibujar círculos
+    for (let v of vertices) {
+        drawCircle(v.x, v.y, R / 4);
+    }
+ 
 }
